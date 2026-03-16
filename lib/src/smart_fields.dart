@@ -12,6 +12,7 @@ class FormToolsDateField extends StatelessWidget {
   final void Function(String)? onChanged;
   final void Function(String?)? onSaved;
   final InputDecoration? decoration;
+  final bool futureDateOnly;
 
   const FormToolsDateField({
     super.key,
@@ -21,6 +22,7 @@ class FormToolsDateField extends StatelessWidget {
     this.onChanged,
     this.onSaved,
     this.decoration,
+    this.futureDateOnly = false,
   });
 
   @override
@@ -33,7 +35,11 @@ class FormToolsDateField extends StatelessWidget {
       inputFormatters: [FormToolsDateFormatter(pattern: pattern)],
       validator: (value) {
         if (value == null || value.isEmpty) return null;
-        if (!FormToolsValidators.isValidDate(value, pattern)) {
+        if (!FormToolsValidators.isValidDate(
+          value, 
+          pattern, 
+          futureDateOnly: futureDateOnly,
+        )) {
           return errorMessage;
         }
         return null;

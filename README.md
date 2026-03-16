@@ -40,6 +40,7 @@ Instead of manually writing validation logic and attaching formatters to standar
 const FormToolsDateField(
   pattern: 'DD/MM/YYYY',
   errorMessage: 'Please enter a valid date',
+  futureDateOnly: true, // Only allow dates strictly in the future
 ),
 
 // Automatic Time formatting and validation

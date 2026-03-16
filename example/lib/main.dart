@@ -93,7 +93,16 @@ class _SmartFieldsTabState extends State<SmartFieldsTab> {
             const Text('No controllers or manual validation logic needed.'),
             const SizedBox(height: 24),
 
-            const FormToolsDateField(pattern: 'DD/MM/YYYY'),
+            const FormToolsDateField(
+              pattern: 'DD/MM/YYYY',
+              futureDateOnly: true,
+              decoration: InputDecoration(
+                labelText: 'Fecha Futura Obligatoria',
+                hintText: 'DD/MM/YYYY',
+                border: OutlineInputBorder(),
+              ),
+              errorMessage: 'Ingrese una fecha válida en el futuro',
+            ),
             const SizedBox(height: 16),
 
             const FormToolsDateField(

@@ -48,7 +48,10 @@ class FormToolsValidators {
 
   /// Valida si una cadena [value] corresponde a una fecha lógicamente posible 
   /// según el [pattern] especificado (ej. 'DD/MM/YYYY', 'MM/YY').
-  static bool isValidDate(String value, String pattern) {
+  ///
+  /// Si [futureDateOnly] es true, validará que la fecha ingresada sea estrictamente
+  /// mayor a la fecha de hoy.
+  static bool isValidDate(String value, String pattern, {bool futureDateOnly = false}) {
     if (value.length != pattern.length) return false;
 
     final separator = pattern.replaceAll(RegExp(r'[a-zA-Z]'), '')[0];
@@ -97,6 +100,21 @@ class FormToolsValidators {
       ];
 
       if (day < 1 || day > daysInMonth[month - 1]) return false;
+    }
+
+    if (futureDateOnly) {
+      final now = DateTime.now();
+      if (day != null && month != null && year != null) {
+        final fullYearCalculated = yearLength == 2 ? 2000 + year : year;
+        final inputDate = DateTime(fullYearCalculated, month, day);
+        final today = DateTime(now.year, now.month, now.day);
+        if (!inputDate.isAfter(today)) return false; 
+      } else if (month != null && year != null) {
+        final fullYearCalculated = yearLength == 2 ? 2000 + year : year;
+        final inputDate = DateTime(fullYearCalculated, month);
+        final todayMonth = DateTime(now.year, now.month);
+        if (!inputDate.isAfter(todayMonth)) return false; 
+      }
     }
 
     return true;
