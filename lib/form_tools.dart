@@ -4,3 +4,4 @@ export 'src/time_formatter.dart';
 export 'src/otp_widget.dart';
 export 'src/validators.dart';
 export 'src/smart_fields.dart';
+export 'src/search_field.dart';

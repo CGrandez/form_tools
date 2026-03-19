@@ -8,7 +8,8 @@ Make your forms **Plug & Play**!
 
 ## Features
 
-- **Smart Form Fields:** Pre-built `TextFormField` wrappers (`FormToolsDateField`, `FormToolsTimeField`, `FormToolsEmailField`, `FormToolsPasswordField`, `FormToolsCapitalizationField`) that handle formatting, validation, and error messages automatically.
+- **Smart Form Fields:** Pre-built `TextFormField` wrappers (`FormToolsDateField`, `FormToolsTimeField`, `FormToolsEmailField`, `FormToolsPasswordField`, `FormToolsCapitalizationField`, `FormToolsSearchField`) that handle formatting, validation, and error messages automatically.
+- **Searchable ComboBox:** A professional dropdown widget (`FormToolsSearchField`) that allows users to filter items as they type, supporting both simple strings and complex objects.
 - **Real-Time Text Formatters:** `TextInputFormatter` utilities to format text dynamically as the user types (e.g., automatically inserting slashes in dates `DD/MM/YYYY` or colons in times `HH:MM`).
 - **Dynamic OTP Widget:** A beautiful, auto-focusing One-Time Password widget for authentication flows, featuring customizable lengths and input styles (Square, Circular, Underlined).
 - **Advanced Validation:** Built-in email regex validation and highly customizable strong password validation (configurable minimum lengths and required character types).
@@ -20,7 +21,7 @@ Add the package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  form_tools: ^1.0.0
+  form_tools: ^1.1.0
 ```
 
 Import it in your Dart code:
@@ -68,6 +69,17 @@ const FormToolsPasswordField(
 const FormToolsCapitalizationField(
   labelText: 'Full Name',
   type: CapitalizationType.words,
+),
+
+// Searchable ComboBox
+FormToolsSearchField<String>(
+  items: const ['Apple', 'Banana', 'Cherry'],
+  labelBuilder: (item) => item,
+  decoration: const InputDecoration(
+    labelText: 'Select Fruit',
+    border: OutlineInputBorder(),
+  ),
+  onSelected: (value) => print(value),
 ),
 ```
 

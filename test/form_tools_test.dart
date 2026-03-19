@@ -7,7 +7,7 @@ void main() {
     expect(FormToolsValidators.isStrongPassword('Strong1!'), isTrue);
     
     // Testing customizable minimum length
-    expect(FormToolsValidators.isStrongPassword('S1!', minLength: 3), isTrue);
+    expect(FormToolsValidators.isStrongPassword('sS1!', minLength: 3), isTrue);
     expect(FormToolsValidators.isStrongPassword('Strong1!', minLength: 10), isFalse);
     
     // Testing specific requirements

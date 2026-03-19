@@ -1,6 +1,6 @@
 name: form_tools
 description: "A highly customizable and ready-to-use Flutter package for smart form fields, real-time text formatting, OTP widgets, and advanced validation."
-version: 1.0.1
+version: 1.1.0
 homepage: https://github.com/CGrandez/form_tools
 repository: https://github.com/CGrandez/form_tools
 issue_tracker: https://github.com/CGrandez/form_tools/issues

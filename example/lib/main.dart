@@ -132,6 +132,65 @@ class _SmartFieldsTabState extends State<SmartFieldsTab> {
               errorMessage:
                   'Mínimo 6 chars, requiere mayúscula, minúscula y número',
             ),
+            const SizedBox(height: 16),
+
+            FormToolsSearchField<String>(
+              items: const [
+                'Apple',
+                'Banana',
+                'Cherry',
+                'Date',
+                'Elderberry',
+                'Fig',
+                'Grape',
+              ],
+              labelBuilder: (item) => item,
+              decoration: const InputDecoration(
+                labelText: 'Seleccionar Fruta (String)',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.search),
+              ),
+              onSelected: (value) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Seleccionaste: $value')),
+                );
+              },
+            ),
+            const SizedBox(height: 16),
+
+            const Text(
+              'Búsqueda Avanzada (Objetos)',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 8),
+            FormToolsSearchField<_User>(
+              items: const [
+                _User(name: 'CGrandez', email: 'cgrandez@example.com'),
+                _User(name: 'John Doe', email: 'john@example.com'),
+                _User(name: 'Jane Smith', email: 'jane@example.com'),
+                _User(name: 'Flutter Dev', email: 'dev@flutter.dev'),
+              ],
+              labelBuilder: (user) => user.name,
+              itemBuilder: (context, _User user) => ListTile(
+                leading: CircleAvatar(child: Text(user.name[0])),
+                title: Text(user.name),
+                subtitle: Text(user.email),
+              ),
+              decoration: const InputDecoration(
+                labelText: 'Buscar Usuario',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(Icons.person_search),
+              ),
+              onSelected: (_User? user) {
+                if (user != null) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Usuario: ${user.name} (${user.email})'),
+                    ),
+                  );
+                }
+              },
+            ),
             const SizedBox(height: 24),
 
             ElevatedButton(
@@ -320,4 +379,14 @@ class _OtpWidgetsTabState extends State<OtpWidgetsTab> {
       ),
     );
   }
+}
+
+class _User {
+  final String name;
+  final String email;
+
+  const _User({required this.name, required this.email});
+
+  @override
+  String toString() => name;
 }
